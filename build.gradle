@@ -1,0 +1,54 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+sourceCompatibility = 1.7
+version = '1.0'
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Spring Hibernate Multi-tenancy',
+                   'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile 'joda-time:joda-time:2.6'
+	compile 'org.jadira.usertype:usertype.jodatime:2.0.1'
+	compile 'commons-io:commons-io:2.4'
+	compile 'com.fasterxml.jackson.core:jackson-databind:2.5.2'
+	compile 'com.fasterxml.jackson.core:jackson-core:2.5.2'
+
+    compile 'javax.servlet:javax.servlet-api:3.0.1'
+    compile 'org.springframework:spring-webmvc:4.1.6.RELEASE'
+    compile 'org.slf4j:jcl-over-slf4j:1.7.5'
+    compile('org.springframework:spring-context:4.1.6.RELEASE') {
+      	exclude group:'commons-logging', module:'commons-logging'
+    }
+    compile 'org.slf4j:slf4j-log4j12:1.7.5'
+    runtime 'ch.qos.logback:logback-classic:1.1.3'
+    compile 'org.apache.commons:commons-dbcp2:2.1'
+    compile 'org.springframework:spring-orm:4.1.6.RELEASE'
+    compile 'org.springframework:spring-tx:4.1.6.RELEASE'
+    compile 'org.springframework:spring-webmvc:4.1.6.RELEASE'
+    runtime 'org.apache.commons:commons-pool2:2.4.1'
+    runtime 'org.postgresql:postgresql:9.4-1201-jdbc41'
+    compile 'org.hibernate:hibernate-entitymanager:4.3.10.Final'
+
+}
+
+test {
+    systemProperties 'property': 'value'
+}
+
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
+}
