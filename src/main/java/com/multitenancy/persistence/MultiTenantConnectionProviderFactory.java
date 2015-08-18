@@ -48,6 +48,7 @@ public class MultiTenantConnectionProviderFactory extends AbstractDataSourceBase
             dataSource = new BasicDataSource();
             dataSource.setDriverClassName(env.getProperty("db.driver"));
             dataSource.setUrl(env.getProperty("db.url") + tenant);
+           // dataSource.setUrl("jdbc:postgresql://" + host + ":" + port + "/" + dbName+"?currentSchema=" + schema);
             dataSource.setUsername(env.getProperty("db.username"));
             dataSource.setPassword(env.getProperty("db.password"));
             dataSource.setMaxIdle(10);
